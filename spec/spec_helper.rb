@@ -62,17 +62,31 @@ RSpec.configure do |config|
     sign_in("ginger_baker")
   end
 
+  def sign_up_as_shadowfiend
+    sign_in("shadowfiend")
+  end
+
+  def sign_up_as_necrophos
+    sign_in("necrophos")
+  end
+
+  def sign_in_as_shadowfiend
+    sign_in("shadowfiend")
+  end
+
   def logout
     click_button 'Sign Out'
   end
-  # def make_link(title = nil, url = nil)
-  #   title ||= "reddit"
-  #   url ||= "http://www.reddit.com"
-  #
-  #   visit "/links/new"
-  #   fill_in 'Title', with: title
-  #   fill_in 'URL', with: url
-  #   click_button "Create New Link"
-  # end
+
+  def make_goal(name = nil, public_goal = true)
+    visit "/goals/new"
+    fill_in 'Name', with: title
+    if public_goal
+      choose 'public_goal'
+    else
+      choose 'private_goal'
+    end
+    click_button "Create New Goal"
+  end
 
 end
