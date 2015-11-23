@@ -22,7 +22,8 @@ end
 
 feature "logging in" do
   before :each do
-    visit "/session/new"
+    sign_up_as_ginger_baker
+    logout
   end
 
   it "shows username on the homepage after login" do
@@ -33,7 +34,8 @@ end
 
 feature "logging out" do
   before :each do
-    visit "/session/new"
+    sign_up_as_ginger_baker
+    logout
   end
 
   it "begins with logged out state" do
