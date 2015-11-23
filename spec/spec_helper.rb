@@ -63,11 +63,11 @@ RSpec.configure do |config|
   end
 
   def sign_up_as_shadowfiend
-    sign_in("shadowfiend")
+    sign_up("shadowfiend")
   end
 
   def sign_up_as_necrophos
-    sign_in("necrophos")
+    sign_up("necrophos")
   end
 
   def sign_in_as_shadowfiend
@@ -80,11 +80,12 @@ RSpec.configure do |config|
 
   def make_goal(name = nil, public_goal = true)
     visit "/goals/new"
-    fill_in 'Name', with: title
+    # save_and_open_page
+    fill_in 'Name', with: name
     if public_goal
-      choose 'public_goal'
+      choose('public_goal')
     else
-      choose 'private_goal'
+      choose('private_goal')
     end
     click_button "Create New Goal"
   end

@@ -1,0 +1,7 @@
+<h3><%= @goal.name %></h3>
+
+<% if current_user.id == @goal.user_id %>
+  <%= link_to "Edit Goal", edit_goal_url(@goal) %>
+<% end %>
+
+<%= link_to "Goals Index", goals_url %>

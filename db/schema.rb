@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20151123194506) do
 
   create_table "goals", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.integer  "user_id",                   null: false
-    t.boolean  "public",     default: true, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",        null: false
+    t.integer  "user_id",     null: false
+    t.string   "public_bool", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"

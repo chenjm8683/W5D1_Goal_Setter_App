@@ -3,7 +3,7 @@ class CreateGoals < ActiveRecord::Migration
     create_table :goals do |t|
       t.string :name, null: false
       t.integer :user_id, null: false
-      t.boolean :public, null: false, default: true
+      t.string :public_bool, null: false
 
       t.timestamps null: false
     end

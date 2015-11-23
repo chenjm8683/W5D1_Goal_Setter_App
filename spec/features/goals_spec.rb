@@ -31,7 +31,7 @@ feature "Creating a goal" do
     end
 
     it "validates the presence of name" do
-      fill_in 'Name', with: 'fake_goal'
+      fill_in 'Name', with: ''
       click_button 'Create New Goal'
       expect(page).to have_content 'New Goal'
       expect(page).to have_content "Name can't be blank"
@@ -39,8 +39,8 @@ feature "Creating a goal" do
 
     it "redirects to the goal show page" do
       fill_in 'Name', with: 'fake_goal'
+      choose('public_goal')
       click_button 'Create New Goal'
-
       expect(current_path).to match(/^\/goals\/(\d)+/)
       expect(page).to have_content 'fake_goal'
     end
@@ -56,6 +56,7 @@ feature "Creating a goal" do
 
       it "still allows for a successful save" do
         fill_in 'Name', with: 'fake_goal'
+        choose('public_goal')
         click_button 'Create New Goal'
         expect(page).to have_content 'fake_goal'
       end
@@ -86,12 +87,14 @@ feature "Seeing goals" do
     end
 
     it "shows all the public goals for all users and private goals that belong to the current user" do
+
       expect(page).to have_content 'public_goal_1'
       expect(page).to have_content 'public_goal_2'
       expect(page).to have_content 'private_goal_2'
       expect(page).to_not have_content 'private_goal_1'
     end
-
+#
+#
     it "shows the current user's username" do
       expect(page).to have_content 'shadowfiend'
     end
@@ -114,7 +117,7 @@ feature "Seeing goals" do
 
 end
 
-#================================
+
 feature "Showing a goal" do
   context "when logged in" do
     before :each do
@@ -129,11 +132,11 @@ feature "Showing a goal" do
     end
 
     it "displays the goal name" do
-      expect(page).to have_content 'google'
+      expect(page).to have_content 'public_goal_1'
     end
 
     it "displays a link back to the goal index" do
-      expect(page).to have_content "goals"
+      expect(page).to have_content "Goals Index"
     end
   end
 end
@@ -176,7 +179,7 @@ feature "Editing a goal" do
   it "has all the data pre-filled" do
     click_link 'Edit Goal'
     expect(find_field('Name').value).to eq('public_goal_2')
-    find('public_goal').should be_checked
+    expect(find_field("public_goal")).to be_checked
   end
 
   it "shows errors if editing fails" do
