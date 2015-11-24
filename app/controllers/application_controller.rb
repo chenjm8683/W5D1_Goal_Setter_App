@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
   def ensure_logged_in
     redirect_to new_session_url if current_user.nil?
   end
+
+  def ensure_logged_out
+    redirect_to user_url(current_user) if current_user
+  end
 end

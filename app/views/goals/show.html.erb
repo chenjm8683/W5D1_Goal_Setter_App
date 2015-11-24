@@ -5,6 +5,10 @@
   <%= link_to "Edit Goal", edit_goal_url(@goal) %>
 <% end %>
 
+<h4>Cheer!</h4>
+<%= @goal.cheers.count %>
+<%= button_to "Cheer for this goal!!!", goal_cheers_url(@goal), method: :post %>
+
 <h4>Comments</h4>
 <ul>
   <% @comments.each do |comment| %>

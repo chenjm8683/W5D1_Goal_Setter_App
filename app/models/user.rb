@@ -13,9 +13,10 @@ class User < ActiveRecord::Base
     foreign_key: :author_id,
     primary_key: :id,
     class_name: 'Comment'
-    
+
   has_many :goals, dependent: :destroy
   has_many :comments, as: :commentable
+  has_many :cheers
 
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)

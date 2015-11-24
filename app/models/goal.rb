@@ -6,6 +6,7 @@ class Goal < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, as: :commentable
+  has_many :cheers
 
   def default_value
     self.public_bool ||= "true"
