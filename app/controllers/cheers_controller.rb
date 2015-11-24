@@ -7,6 +7,17 @@ class CheersController < ApplicationController
     redirect_to goal_url(@cheer.goal_id)
   end
 
+  def index
+    @results = Cheer.find_by_sql("
+      SELECT u.username, COUNT(*) as cheer_count
+      FROM cheers c
+      JOIN goals g on c.goal_id = g.id
+      JOIN users u on g.user_id = u.id
+      GROUP BY u.username
+      ORDER BY COUNT(*) DESC"
+    )
+  end
+
   def cheer_params
     params.permit(:goal_id)
   end
