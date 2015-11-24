@@ -87,7 +87,6 @@ feature "Seeing goals" do
     end
 
     it "shows all the public goals for all users and private goals that belong to the current user" do
-
       expect(page).to have_content 'public_goal_1'
       expect(page).to have_content 'public_goal_2'
       expect(page).to have_content 'private_goal_2'

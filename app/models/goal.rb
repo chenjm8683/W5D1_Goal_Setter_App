@@ -5,12 +5,11 @@ class Goal < ActiveRecord::Base
   before_save :default_value
 
   belongs_to :user
+  has_many :comments, as: :commentable
 
   def default_value
     self.public_bool ||= "true"
   end
-
-
 
 
 end

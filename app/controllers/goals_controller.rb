@@ -2,7 +2,7 @@ class GoalsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @goals = Goal.where("user_id = ? or public_bool = ?", current_user.id, "true")
+    @goals = Goal.where("user_id = ? OR public_bool = ?", current_user.id, "true")
   end
 
   def new
@@ -30,6 +30,7 @@ class GoalsController < ApplicationController
 
   def update
     @goal = Goal.find(params[:id])
+
     if @goal.update(goal_params)
       redirect_to goal_url(@goal)
     else
@@ -47,7 +48,4 @@ class GoalsController < ApplicationController
   def goal_params
     params.require(:goal).permit(:name, :public_bool)
   end
-
-
-
 end
