@@ -3,9 +3,6 @@
 <% @goals.each do |goal| %>
 <li>
   <%= link_to goal.name, goal_url(goal) %>
-  <% if goal.user_id == current_user.id %>
-    <%= link_to "Edit Goal", edit_goal_url(goal) %>
-  <% end %>
 </li>
 <% end %>
 

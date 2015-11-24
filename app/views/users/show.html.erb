@@ -1,3 +1,30 @@
 <h3><%= @user.username + " goals" %></h3>
+<ul>
+  <% @user.goals.each do |goal| %>
+    <li><%= goal.name %></li>
+  <% end %>
+</ul>
 
-<% @user.goals.each do |goal| %>
+<h4>Comments</h4>
+<ul>
+  <% @comments.each do |comment| %>
+    <li>
+      <%= comment.author.username %><br>
+      <%= comment.body %>
+      <% if current_user.id == comment.author_id %>
+        <%= button_to "Remove Comment", comment_url(comment), method: :delete %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<p>Add User Comment</p>
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <textarea name="comment[body]" rows="8" placeholder="Comment"></textarea>
+  <input type="hidden" name="comment[commentable_id]" value="<%= @user.id %>">
+  <input type="hidden" name="comment[commentable_type]" value="User">
+  <input type="submit" value="Add Comment">
+</form>
+
+<%= link_to "Goals Index", goals_url %>

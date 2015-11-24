@@ -1,7 +1,30 @@
 <h3><%= @goal.name %></h3>
+<h5><%= "by " + @goal.user.username %></h5>
 
 <% if current_user.id == @goal.user_id %>
   <%= link_to "Edit Goal", edit_goal_url(@goal) %>
 <% end %>
+
+<h4>Comments</h4>
+<ul>
+  <% @comments.each do |comment| %>
+    <li>
+      <%= comment.author.username %>
+      <%= comment.body %>
+      <% if current_user.id == comment.author_id %>
+        <%= button_to "Remove Comment", comment_url(comment), method: :delete %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<p>Add Goal Comment</p>
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <textarea name="comment[body]" rows="8" placeholder="Comment"></textarea>
+  <input type="hidden" name="comment[commentable_id]" value="<%= @goal.id %>">
+  <input type="hidden" name="comment[commentable_type]" value="Goal">
+  <input type="submit" value="Add Comment">
+</form>
 
 <%= link_to "Goals Index", goals_url %>

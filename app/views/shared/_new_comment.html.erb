@@ -1,0 +1,5 @@
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <textarea name="comment[body]" rows="8"></textarea>
+  <input type="submit" value="Submit Comment">
+</form>

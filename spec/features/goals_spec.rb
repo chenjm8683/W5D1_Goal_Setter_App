@@ -149,6 +149,7 @@ feature "Editing a goal" do
     sign_up_as_shadowfiend
     make_goal("public_goal_2")
     visit '/goals'
+    click_link("public_goal_2")
     # sign_up_as_ginger_baker
     # make_goal("public_goal_1")
     # visit '/goals'

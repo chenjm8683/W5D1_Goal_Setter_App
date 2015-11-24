@@ -3,6 +3,8 @@ require 'rails_helper'
 feature "Adding comments to user" do
   before :each do
     sign_up_as_ginger_baker
+    sign_up_as_shadowfiend
+    visit '/users/1'
   end
 
   it "there is an add user comment form on the goal index page" do
@@ -24,6 +26,8 @@ end
 feature "Deleting comments" do
   before :each do
     sign_up_as_ginger_baker
+    sign_up_as_shadowfiend
+    visit '/users/1'
     fill_in 'Comment', with: "there are 10 kinds of people. Those who understand binary and those who dont."
     click_button "Add Comment"
   end

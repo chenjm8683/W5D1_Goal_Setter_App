@@ -4,7 +4,6 @@ feature "Adding comments to goal" do
   before :each do
     sign_up_as_ginger_baker
     make_goal("fake_goal_1")
-    click_link("fake_goal_1")
   end
 
   it "there is an add goal comment form on the goal show page" do
@@ -27,7 +26,6 @@ feature "Deleting comments" do
   before :each do
     sign_up_as_ginger_baker
     make_goal("fake_goal_1")
-    click_link("fake_goal_1")
     fill_in 'Comment', with: "there are 10 kinds of people. Those who understand binary and those who dont."
     click_button "Add Comment"
   end

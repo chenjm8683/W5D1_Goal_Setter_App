@@ -3,6 +3,7 @@ class GoalsController < ApplicationController
 
   def index
     @goals = Goal.where("user_id = ? OR public_bool = ?", current_user.id, "true")
+    @comment = Comment.new
   end
 
   def new
@@ -22,6 +23,7 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find(params[:id])
+    @comments = @goal.comments
   end
 
   def edit
