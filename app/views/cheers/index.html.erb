@@ -1,0 +1,8 @@
+<h3>Leaderboard</h3>
+<ul>
+  <% @results.each do |result| %>
+  <li>
+    <%= result.username %> has <%= result.cheer_count %> cheers.
+  </li>
+  <% end %>
+</ul>
